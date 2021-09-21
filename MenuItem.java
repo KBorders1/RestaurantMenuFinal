@@ -4,7 +4,6 @@ package restaurant;
 import java.util.Objects;
 
 public class MenuItem {
-    private static int nextItemNumber = 1;
     private String name;
     private String description;
     private String type;
@@ -23,8 +22,8 @@ public class MenuItem {
     }
 
     public MenuItem(String name, String description, String type, double price) {
-        this(name, description, type, price, nextItemNumber, true);
-        nextItemNumber++;
+        this(name, description, type, price, 0, true);
+
     }
 
 
@@ -70,12 +69,12 @@ public class MenuItem {
         isNew = aNew;
     }
 
-    public static int getNextItemNumber() {
-        return nextItemNumber;
-    }
-
     public double getPrice() {
         return price;
+    }
+
+    public void setItemNumber(int itemNumber) {
+        this.itemNumber = itemNumber;
     }
 
     public boolean isNew() {

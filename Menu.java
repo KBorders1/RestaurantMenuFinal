@@ -6,24 +6,23 @@ import java.util.Date;
 public class Menu {
     private Date lastUpdated;
     private ArrayList<MenuItem> full = new ArrayList<>();
-    //itemsInHistory is the number of items that have been added to the menu. I made this counter so old objects
-    //don't become new again because full.size() decreases when removing items.
-    private int itemsInHistory = 0;
+    private int itemInHistory = 1;
 
     public void addItem(MenuItem itemToAdd) {
 
         if (full.contains(itemToAdd)) {
             System.out.println("Tried to add duplicate item.");
         } else {
+            itemToAdd.setItemNumber(itemInHistory);
             full.add(itemToAdd);
             lastUpdated = new Date();
-            itemsInHistory ++;
+            itemInHistory ++;
         }
     }
 
     public void updateNew() {
         for (MenuItem item : full) {
-            if (itemsInHistory - item.getItemNumber() >= 2) {
+            if (itemInHistory - item.getItemNumber() > 2) {
                 item.setNew(false);
             }
         }
